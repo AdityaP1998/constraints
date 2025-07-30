@@ -1,0 +1,17 @@
+class cons;
+  rand int a[];
+  constraint c1{a.size==8;}
+  constraint c2{foreach(a[i])
+    a[i]==(i*10)+9;
+               }
+  function void post_randomize();
+    $display("output is %0p",a);
+  endfunction
+endclass
+cons c;
+module tb;
+  initial begin
+    c=new();
+    assert(c.randomize());
+    end
+endmodule
