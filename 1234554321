@@ -1,0 +1,22 @@
+ class cons;
+   rand int a[];
+   constraint c1{a.size==10;}
+   constraint c2{foreach(a[i])
+     if(i<5)			
+                     a[i]==i+1;
+               	  else
+                     a[i]==10-i;}
+  
+   function void post_randomize();
+     $display("output is %0p",a);
+   endfunction
+  
+ endclass
+
+ cons c;
+ module tb;
+   initial begin
+     c=new();
+     assert(c.randomize());
+   end
+endmodule
