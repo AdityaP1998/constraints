@@ -1,0 +1,27 @@
+class cons;
+  rand int a;
+  constraint c1{a inside {[1:200]};}
+  
+  function void post_randomize();
+    reg flag;
+    for (int i = 2 ; i <= a ; i++)begin
+      flag = 0;
+      for(int j=2; j <= i**0.5 ; j++) begin
+        if(i%j==0)
+          flag=1;
+      end
+      if(flag==0)
+        $display("prime %0d",i);
+      else if (flag ==1)
+        $display("not a prime %0d",i);
+    end
+  endfunction
+endclass
+
+cons c;
+module tb;
+  initial begin 
+    c= new();
+    assert(c.randomize());
+  end
+endmodule
