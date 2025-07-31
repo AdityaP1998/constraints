@@ -1,0 +1,32 @@
+ class cons;
+   rand int a[];
+   constraint c3{a.size()==20;}
+   constraint c1{a[i] inside {[1:100]};}
+   constraint c2{foreach (a[i]) 
+                 if(i==0)
+                   a[i]==0;
+                 else if(i==1)
+                   a[i]==1;
+                }
+   function void post_randomize();
+     for(int i=2; i<a.size(); i++) begin
+         a[i]=a[i-1] + a[i-2] ;
+     end
+     $display("op is %0p",a);
+   endfunction
+ endclass
+
+ cons c;
+ module tb;
+   initial begin
+     c=new();
+     repeat(10) begin
+     assert(c.randomize());
+     end
+   end
+ endmodule
+
+
+
+
+//op is '{0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181} 
