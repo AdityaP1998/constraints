@@ -1,0 +1,23 @@
+class cons;
+  rand bit[1:0]a;
+  int q[$];
+  constraint c1{!(a inside {q});}
+
+  function void post_randomize();
+    q.push_front(a);
+    if(q.size() == 2**$size(a))begin
+      q.delete();
+    end
+    $display("a is %0d",a);
+  endfunction
+endclass
+
+cons c;
+module tb;
+  initial begin
+    c= new();
+    repeat(10)begin
+    assert(c.randomize());
+    end
+  end
+endmodule
