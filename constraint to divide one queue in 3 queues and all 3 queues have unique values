@@ -31,7 +31,7 @@ class cons;
         
         
    function void post_randomize();
-        $display("op a %0p  ---- a1 %0p---- a2 %0p ----a3 %0p
+        $display("op a %0p  ---- \n a1 %0p---- \n a2 %0p ----\n a3 %0p
                  ",a,a1,a2,a3);
   endfunction
         
